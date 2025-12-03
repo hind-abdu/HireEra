@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up – HireEra{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+
+    <div class="card shadow-sm p-4" style="width: 450px; border-radius: 18px;">
+
+        <h3 class="fw-bold text-center mb-3 text-primary">Create Your Account</h3>
+        <p class="text-center text-muted mb-4">Join HireEra and start your job journey</p>
+
+        <form method="POST" action="{% url 'seeker:signup' %}">
+            {% csrf_token %}
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label class="fw-semibold mb-1">Email</label>
+                <input type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter email"
+                    style="{% if errors.email %}border: 1px solid #b71c1c;{% endif %}">
+
+                {% if errors.email %}
+                <small class="d-flex align-items-center mt-1" style="color: #b71c1c;">
+                    <i class="fa-solid fa-circle-exclamation me-1"></i>
+                    {{ errors.email }}
+                </small>
+                {% endif %}
+            </div>
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label class="fw-semibold mb-1">Username</label>
+                <input type="text"
+                    name="username"
+                    class="form-control"
+                    placeholder="Enter username"
+                    style="{% if errors.username %}border: 1px solid #b71c1c;{% endif %}">
+
+                {% if errors.username %}
+                <small class="d-flex align-items-center mt-1" style="color: #b71c1c;">
+                    <i class="fa-solid fa-circle-exclamation me-1"></i>
+                    {{ errors.username }}
+                </small>
+                {% endif %}
+            </div>
+
+            <!-- First Name -->
+            <div class="mb-3">
+                <label for="firstNameInput" class="fw-semibold mb-1">First Name</label>
+                <input type="text" class="form-control" id="firstNameInput" name="first_name"
+                    placeholder="First name">
+            </div>
+
+            <!-- Last Name -->
+            <div class="mb-3">
+                <label for="lastNameInput" class="fw-semibold mb-1">Last Name</label>
+                <input type="text" class="form-control" id="lastNameInput" name="last_name"
+                    placeholder="Last name">
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="fw-semibold mb-1">Password</label>
+                <input type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Enter password"
+                    style="{% if errors.password %}border: 1px solid #b71c1c;{% endif %}">
+
+                {% if errors.password %}
+                <small class="d-flex align-items-center mt-1" style="color: #b71c1c;">
+                    <i class="fa-solid fa-circle-exclamation me-1"></i>
+                    {{ errors.password }}
+                </small>
+                {% endif %}
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
+                Create Account →
+            </button>
+
+            <p class="text-center mt-3">
+                <span class="text-muted">Already have an account?</span>
+                <a href="{% url 'seeker:signin' %}" class="fw-semibold">Sign in</a>
+            </p>
+
+    </div>
+</div>
+
+{% endblock %}
